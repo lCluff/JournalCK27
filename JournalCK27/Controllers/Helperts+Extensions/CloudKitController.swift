@@ -46,28 +46,4 @@ class CloudKitController {
             }
         }
     }
-    
-    // Update
-    func update(record: CKRecord, database: CKDatabase, completion: @escaping (Bool) -> Void) {
-        let operation = CKModifyRecordsOperation()
-        operation.recordsToSave = [record]
-        operation.savePolicy = .changedKeys
-        operation.qualityOfService = .userInteractive
-        operation.queuePriority = .high
-        operation.completionBlock = {
-            completion(true)
-        }
-        database.add(operation)
-    }
-    
-    // Delete
-    func delete(recordID: CKRecord.ID, database: CKDatabase, completion: @escaping (Bool) -> Void) {
-        database.delete(withRecordID: recordID) { (_, error) in
-            if let error = error {
-                print("Error in \(#function) : \(error.localizedDescription) /n---/n \(error)")
-                completion(false)
-            }
-            completion(true)
-        }
-    }
 }

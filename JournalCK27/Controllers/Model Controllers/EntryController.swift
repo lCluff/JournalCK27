@@ -51,31 +51,4 @@ class EntryController {
             completion(true)
         }
     }
-    
-    // Update
-    func update(entry: Entry, withTitle title: String, body: String) {
-        entry.title = title
-        entry.body = body
-        
-        let recordToSave = CKRecord(entry: entry)
-        let database = CloudKitController.shared.privateDB
-        
-        CloudKitController.shared.update(record: recordToSave, database: database) { (success) in
-            if success {
-                print("Updated entry successfully")
-            }
-        }
-    }
-    
-    // Delete
-    func delete(entry: Entry, completion: @escaping (Bool) -> Void) {
-        guard let index = entries.firstIndex(of: entry) else { return }
-        entries.remove(at: index)
-        
-        let database = CloudKitController.shared.privateDB
-        
-        CloudKitController.shared.delete(recordID: entry.recordID, database: database) { (success) in
-            completion(success ? true : false)
-        }
-    }
 }

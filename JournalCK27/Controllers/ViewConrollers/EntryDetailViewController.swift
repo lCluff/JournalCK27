@@ -27,11 +27,7 @@ class EntryDetailViewController: UIViewController {
         guard let title = titleTextField.text, !title.isEmpty,
             let body = bodyTextView.text, !body.isEmpty
             else { return }
-        if let entry = entry {
-            EntryController.shared.update(entry: entry, withTitle: title, body: body)
-        } else {
-            EntryController.shared.createEntryWith(title: title, body: body)
-        }
+        EntryController.shared.createEntryWith(title: title, body: body)
         self.navigationController?.popViewController(animated: true)
     }
     

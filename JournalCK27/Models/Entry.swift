@@ -46,12 +46,6 @@ extension CKRecord {
     }
 }
 
-extension Entry: Equatable {
-    static func == (lhs: Entry, rhs: Entry) -> Bool {
-        return lhs.recordID == rhs.recordID
-    }
-}
-
 struct EntryConstants {
     static let typeKey = "Entry"
     fileprivate static let titleKey = "title"
